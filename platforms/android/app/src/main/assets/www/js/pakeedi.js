@@ -43,6 +43,7 @@ $(function() {
     })
     .complete(function(){
       $.mobile.changePage("#result");
+      $('[role="main"] > i').hide();
       $.each(responses.itemlist, function(index, val) {
 
         console.log(responses.itemlist[index].info1);
@@ -51,24 +52,31 @@ $(function() {
         $('[data-title="result"] > div > div').
         append(
           '<div class="result_item" onclick=clickItem("'+responses.itemlist[index].m_url+'")>'+
-            '<div class="list-image"></div>'+
+            '<div class="list-image" onclick=clickItem()'+""+'></div>'+
             '<div>'+responses.itemlist[index].info1+'</div>'+
             '<div style="font-weight:800;">'+responses.itemlist[index].info2+'</div>'+
           '</div>');
         //enditem
+        $(document).ready(function() {
+          console.log("ready");
+          $('.result_item').click(function(){
+            $('.result_item').removeClass('item_active');
+            $(this).addClass('item_active');
+          });
 
+        });
       });
     });
 });
 
 function clickItem(link){
+
     $.ajax({
       url: link,
       type: 'GET',
       dataType: 'json',
       crossDomain : true,
       success : function(response){
-        console.log(response)
         $('#player_img').css('background-image','url('+response.imgSrc+')');
         $('#player_singer').html(response.msinger);
         $('#player_title').html(response.msong);
@@ -77,12 +85,10 @@ function clickItem(link){
         $('[class="fas fa-play"]').hide();
         $('[class="fas fa-pause"]').show();
 
-
-
       }
     })
     .done(function() {
-      console.log("success");
+      console.log("playing");
     })
     .fail(function() {
       console.log("error");

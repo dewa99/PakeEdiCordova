@@ -10,26 +10,31 @@
         <script src="js/jquery.touchSwipe.min.js"></script>
         <link rel="stylesheet" type="text/css" href="css/pakeedi.css">
         <link rel="stylesheet" type="text/css" href="css/fontawesome/css/all.css">
-        <title>Hello World</title>
+        <title>Search Result</title>
         <script type="text/javascript">
 
-            $(function() {
+        $(function(){ // the .on() method does require jQuery 1.7 + but this will allow you to have the contained code only run when the #splash page is initialized.
+            setTimeout(function(){
+
+                $.mobile.changePage("main.html", {transition : "flip"});
+
                 $( "[data-role='navbar']" ).navbar();
                 $( "[data-role='header'], [data-role='footer']" ).toolbar();
-            });
-            $( document ).on( "pagecontainerchange", function() {
-                var current = $( ".ui-page-active" ).jqmData( "title" );
-                $( "[data-role='navbar'] a.ui-btn-active" ).removeClass( "ui-btn-active" );
-                $( "[data-role='navbar'] a" ).each(function() {
-                    if ( $( this ).text() === current ) {
-                        $( this ).addClass( "ui-btn-active" );
-                    }
-                });
-            });
+            }, 3000);
+        });
 
         </script>
     </head>
     <body>
+
+      <div data-role="page" id="splash_screen" >
+
+          <div role="main">
+            <h3 style="font-size:50px;text-align: center;">PAKE EDI MUSIC</h3>
+            <h5 style="font-size:50px;text-align: center;">ENJOY!</h5>
+          </div>
+
+      </div>
 
       <div data-role="header" data-position="fixed" class="pakeedi_header">
         <div style="width:90%">
@@ -40,22 +45,6 @@
         </div>
 
       </div>
-
-      <div data-role="page" data-title="home">
-          <div role="main">
-            <h3 style="font-size:50px;text-align: center;">PAKE EDI MUSIC</h3>
-          </div>
-      </div>
-
-      <div data-role="page" data-title="result" id="result">
-          <div role="main" class="ui-content">
-              <h5 style="font-size:50px;">Your Result</h5>
-              <div id="result_list">
-                  tes
-              </div>
-          </div>
-      </div>
-
 
       <div id="player" data-role="footer" data-position="fixed">
         <div id="player_img"></div>
@@ -71,22 +60,25 @@
         </div>
       </div>
 
+
       <div data-role="footer" style="overflow:hidden;" data-position="fixed" class="pakeedi_footer">
           <div data-role="navbar">
               <ul>
-                  <li><a href="index.html" data-transition="pop"><i class="fas fa-home"></i></a></li>
+                  <li><a href="main.html" data-transition="pop"><i class="fas fa-home"></i></a></li>
                   <li><a href="browse.html" data-transition="pop" ><i class="fas fa-search"></i></a></li>
-                  <li><a href="#favorites" data-transition="pop"><i class="fas fa-star"></i></a></li>
+                  <li><a href="favorites.html" data-transition="pop"><i class="fas fa-star"></i></a></li>
               </ul>
           </div>
       </div>
 
-      <audio src="https://hk.stream.music.joox.com/M5000008XZKX1CI6aK.mp3?vkey=F65B12AEB2AC92882C7C56EA29350A36E7982D8D342D11ECF2679BCD2BF43D96&amp;hdnts=exp=1587210987~acl=/*~hmac=12d35e28aa86b8d43fc2df21833897139372170a8bf90fb1d14f91be753d169f&fromtag=8&guid=JOOX@WEB_OPENUDID" id="audio">
+      <audio src="#" id="audio">
 
       </audio>
+
 
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/pakeedi.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+
     </body>
 </html>

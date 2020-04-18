@@ -9,7 +9,7 @@
 }
 
 body{
-  background: linear-gradient(to bottom, #d31027, #ea384d) !important;
+  background-color: #e8175d !important;
 }
 
 div[data-role="navbar"] > ul > li > a > i{
@@ -29,6 +29,10 @@ div[data-role="page"] > div[role="main"] {
   display: flex;
   color: white;
   flex-direction: column;
+}
+
+div[data-title="Browse"]{
+  height: 150%;
 }
 
 #result_container{
@@ -149,9 +153,10 @@ div[data-role="page"] > div[role="main"] {
   border-width: 0px !important;
   color: white;
   display: flex;
-  height: 140px;
+  height: 130px;
   border-radius: 25px 25px 0px 0px !important;
   overflow: hidden;
+  flex-grow: 0;
 }
 
 #player_img {
@@ -173,29 +178,31 @@ div[data-role="page"] > div[role="main"] {
   padding-top: 15px;
   display: flex;
   flex-direction: column;
-  font-size: 12px;
+  font-size: 3.5vw;
   font-family: 'Gotham';
   text-shadow: 0 0px 0 #fff !important;
   font-weight: 100;
   text-overflow: ellipsis;
+  max-height: 50px !important;
+
 }
 
 #player_description > div {
   text-align: left;
+  max-width: 150px;
 }
 
 #player_title {
   font-weight: 800 !important;
-  font-size: 15px;
+  font-size: 3vw;
 }
 
 #player_controller{
   font-size: 22px;
-  text-align: right;
   width: auto;
-  float: right;
   margin-left: auto;
-  margin-right: 20px;
+  margin-right: 10px;
+  position:static;
 }
 
 #player_controller > i {
@@ -236,6 +243,10 @@ div[data-role="page"] > div[role="main"] {
   -ms-transition: all .8s ease;
   -o-transition: all .8s ease;
   transition: all .8s ease;
+}
+
+.result_item.item_active{
+  background-color: #e8175d !important;
 }
 
 .list-image{
