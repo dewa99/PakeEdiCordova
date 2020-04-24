@@ -232,21 +232,40 @@ div[data-title="Browse"]{
   text-shadow: 0 0px 0 #fff !important;
   border-radius: 5px 5px 5px 5px;
   margin-bottom: 10px;
-  text-align: center;
   font-weight: 300 !important;
   font-size: 13px !important;
   font-family: 'Gotham' !important;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   -webkit-transition: all .8s ease;
   -moz-transition: all .8s ease;
   -ms-transition: all .8s ease;
   -o-transition: all .8s ease;
   transition: all .8s ease;
+  transform: translate(0px,0px);
+
+}
+
+.result_description{
+  display: flex;
+  flex-direction: column;
+  text-overflow: clip;
+  overflow: hidden;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .result_item.item_active{
   background-color: #e8175d !important;
+}
+
+.result_item.item_fav{
+  background-color: #1786E8;
+}
+
+input[name="url"]{
+  display: none;
+  overflow: hidden;
 }
 
 .list-image{

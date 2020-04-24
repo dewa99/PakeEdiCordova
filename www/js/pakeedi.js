@@ -1,5 +1,26 @@
 $('[class="fas fa-pause"]').hide();
 
+$(document).on('pageinit', '#favorite', function(){
+  var data = jsonDe();
+  $.each(data, function(index, val) {
+    //item
+    $('[data-title="Favorites"] > div > div').
+    append(
+      // '<div class="result_item" onclick=clickItem("'+responses.itemlist[index].m_url+'")>'+
+      '<div class="result_item">'+
+        '<input name="url" value="'+data[index].url+'" hidden="true"></input>'+
+        '<div class="list-image"></div>'+
+          // '<i class="fas fa-heart"></i>'+
+          '<div class="result_description">'+
+            '<div>'+data[index].title+'</div>'+
+            '<div style="font-weight:800;">'+data[index].artist+'</div>'+
+          '</div>'+
+      '</div>');
+    });
+
+
+});
+//=============================================================================================================//
 $(function() {
   var height = 140;
      $("#player").swipe( {
@@ -23,6 +44,7 @@ $(function() {
  });
 
     $('body').on('submit','#form_search',function(){
+    var data = jsonDe();
     var search_parameter = $('[name="search_field"]').val();
     console.log(search_parameter);
     var responses;
@@ -42,32 +64,62 @@ $(function() {
       console.log("fail");
     })
     .complete(function(){
-      $.mobile.changePage("#result");
+
       $('[role="main"] > i').hide();
       $.each(responses.itemlist, function(index, val) {
-
-        console.log(responses.itemlist[index].info1);
-
         //item
         $('[data-title="result"] > div > div').
         append(
-          '<div class="result_item" onclick=clickItem("'+responses.itemlist[index].m_url+'")>'+
-            '<div class="list-image" onclick=clickItem()'+""+'></div>'+
-            '<div>'+responses.itemlist[index].info1+'</div>'+
-            '<div style="font-weight:800;">'+responses.itemlist[index].info2+'</div>'+
+          // '<div class="result_item" onclick=clickItem("'+responses.itemlist[index].m_url+'")>'+
+          '<div class="result_item">'+
+            '<input name="url" value="'+responses.itemlist[index].m_url+'" hidden="true"></input>'+
+            '<div class="list-image"></div>'+
+              // '<i class="fas fa-heart"></i>'+
+              '<div class="result_description">'+
+                '<div>'+responses.itemlist[index].info1+'</div>'+
+                '<div style="font-weight:800;">'+responses.itemlist[index].info2+'</div>'+
+              '</div>'+
           '</div>');
         //enditem
-        $(document).ready(function() {
-          console.log("ready");
-          $('.result_item').click(function(){
-            $('.result_item').removeClass('item_active');
-            $(this).addClass('item_active');
-          });
 
+        $(document).ready(function() {
+          $('.result_item').each(function(index,val){
+            $(this).swipe({
+                tap:function(event,target){
+                  clickItem($(this).children('input').val());
+                  $('.result_item').removeClass('item_active');
+                  $(this).addClass('item_active');
+                },
+                doubleTap:function(event,target){
+                  if($(this).hasClass('item_fav')){
+                    $(this).removeClass('item_fav');
+                    unlike($(this).children('input').val());
+                  }
+                  else{
+                    $(this).addClass('item_fav');
+                    like($(this).children('.result_description').children('div:eq(0)').text(),$(this).children('.result_description').children('div:eq(1)').text(),$(this).children('.result_item > input').val());
+                  }
+                },threshold : 50
+            });
+          });
         });
       });
+      //=====search=====/
+
+      $.each(data,function(index, value) {
+        $('.result_item').each(function(index2, value2) {
+            if($(this).children('input').val()==data[index].url){
+              $(this).addClass('item_fav');
+            }
+        });
+      });
+
+      //=====search====/
     });
+
 });
+
+//=====================================================================================================//
 
 function clickItem(link){
 

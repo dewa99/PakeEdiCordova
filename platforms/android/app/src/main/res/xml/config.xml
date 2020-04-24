@@ -20,5 +20,20 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
+    <splash qualifier="land-hdpi" src="res/screen/android/splash-land-hdpi.png" />
+    <splash qualifier="land-ldpi" src="res/screen/android/splash-land-ldpi.png" />
+    <splash qualifier="land-mdpi" src="res/screen/android/splash-land-mdpi.png" />
+    <splash qualifier="land-xhdpi" src="res/screen/android/splash-land-xhdpi.png" />
+    <splash qualifier="land-xxhdpi" src="res/screen/android/splash-land-xxhdpi.png" />
+    <splash qualifier="land-xxxhdpi" src="res/screen/android/splash-land-xxxhdpi.png" />
+    <splash qualifier="port-hdpi" src="res/screen/android/splash-port-hdpi.png" />
+    <splash qualifier="port-ldpi" src="res/screen/android/splash-port-ldpi.png" />
+    <splash qualifier="port-mdpi" src="res/screen/android/splash-port-mdpi.png" />
+    <splash qualifier="port-xhdpi" src="res/screen/android/splash-port-xhdpi.png" />
+    <splash qualifier="port-xxhdpi" src="res/screen/android/splash-port-xxhdpi.png" />
+    <splash qualifier="port-xxxhdpi" src="res/screen/android/splash-port-xxxhdpi.png" />
     <preference name="loglevel" value="DEBUG" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="SplashScreen" value="screen" />
 </widget>
